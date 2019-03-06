@@ -14,9 +14,16 @@ Player::Player()
     frames[6]=sf::IntRect(2, 50,40, 46);//SideL 0
     frames[7]=sf::IntRect(50, 52,40, 44);//SideL 1
 
-    pos[0]=320.0;
+    pos[0]=320.0;//Posicion inicial
     pos[1]=240.0;
+
+    //La carga de texturas podria ser otra clase
     tex.loadFromFile("resources/sp_alien_texture.png");
+    if (!tex.loadFromFile("resources/sp_alien_texture.png"))
+    {
+        std::cerr << "Error cargando la imagen sprites.png";
+        exit(0);
+    }
     spri.setTexture(tex);
     //Le pongo el centroide donde corresponde
     spri.setOrigin(28/2,44/2);
@@ -80,12 +87,6 @@ void Player::movePlayer(sf::Event e) //Esto tendrá que ser un int y no un event
         spri.setTextureRect(frames[0]);
         spri.setPosition(pos[0],pos[1]);
         std::cout << e.key.code << std::endl;
-        break;
-
-
-    //Tecla ESC para salir
-    case sf::Keyboard::Escape:
-        //ventana->close();
         break;
 
     //Cualquier tecla desconocida se imprime por pantalla su código

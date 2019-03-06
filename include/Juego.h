@@ -12,7 +12,6 @@ class Juego
 {
     public:
     Juego(int resol_x, int resol_y, string gamename);
-    void dibuja();
     void loop();
     void render(sf::RenderWindow * ventana);
     void updateGameState(sf::Event e);
@@ -22,8 +21,6 @@ class Juego
     sf::RenderWindow * ventana;
     sf::Clock clock;
     sf::Clock updateClock;
-    sf::Texture * tex;
-    sf::Sprite * sprite;
     Player pl;
 
 };

@@ -2,56 +2,44 @@
 #include <SFML/Graphics.hpp>
 using namespace std;
 
-Juego::Juego(int resol_x, int resol_y, string gamename){
+Juego::Juego(int resol_x, int resol_y, string gamename)
+{
 
-ventana= new sf::RenderWindow(sf::VideoMode(resol_x,resol_y),gamename);
-ventana->setFramerateLimit(60);
+    ventana= new sf::RenderWindow(sf::VideoMode(resol_x,resol_y),gamename);
+    ventana->setFramerateLimit(60);
 
-//sprites de prueba
-tex = new sf::Texture;
-sprite= new sf::Sprite;
+}
 
+void Juego::updateGameState(sf::Event e)
+{
 
-
-
-tex->loadFromFile("resources/sprites.png");
-if (!tex->loadFromFile("resources/sprites.png"))
+    switch(e.type)
     {
-        std::cerr << "Error cargando la imagen sprites.png";
-        exit(0);
-    }
 
-sprite->setTexture(*tex);
+    //Si se recibe el evento de cerrar la ventana la cierro
+    case sf::Event::Closed:
+        ventana->close();
+        break;
 
-
-}
-
-void Juego::updateGameState(sf::Event e){
-
-    switch(e.type){
-
-        //Si se recibe el evento de cerrar la ventana la cierro
-        case sf::Event::Closed:
-            ventana->close();
-            break;
-
-        //Se pulsó una tecla, imprimo su codigo
-        case sf::Event::KeyPressed:
-            pl.movePlayer(e);
+    //Se pulsó una tecla, imprimo su codigo
+    case sf::Event::KeyPressed:
+        pl.movePlayer(e);
 
     }
 
 }
 
-void Juego::render(sf::RenderWindow * ventana){
-ventana->clear();
-ventana->draw(pl.getSprite());
-ventana->display();
+void Juego::render(sf::RenderWindow * ventana)
+{
+    ventana->clear();
+    ventana->draw(pl.getSprite());
+    ventana->display();
 }
 
-void Juego::loop(){
+void Juego::loop()
+{
 
-        //Bucle del juego
+    //Bucle del juego
     while (ventana->isOpen())
     {
         //Bucle de obtención de eventos
@@ -62,7 +50,6 @@ void Juego::loop(){
 
         }
         render(ventana);
-
     }
 
 }
