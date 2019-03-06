@@ -1,0 +1,45 @@
+# depslib dependency file v1.0
+1551864284 source:/home/samuel/FV/sp-movement/main.cpp
+	<iostream>
+	<SFML/Graphics.hpp>
+	"Juego.h"
+
+1551864194 source:/home/samuel/FV/sp-movement/src/Juego.cpp
+	"Juego.h"
+	<SFML/Graphics.hpp>
+
+1551899921 /home/samuel/FV/sp-movement/include/Juego.h
+	"Player.h"
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1551863988 /home/samuel/FV/sp-movement/include/Player.h
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1551899206 source:/home/samuel/FV/sp-movement/src/Player.cpp
+	"Player.h"
+	<SFML/Graphics.hpp>
+
+1551864284 source:/home/samuel/FV/sp-player-movement/main.cpp
+	<iostream>
+	<SFML/Graphics.hpp>
+	"Juego.h"
+
+1551899921 /home/samuel/FV/sp-player-movement/include/Juego.h
+	"Player.h"
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1551863988 /home/samuel/FV/sp-player-movement/include/Player.h
+	<iostream>
+	<SFML/Graphics.hpp>
+
+1551864194 source:/home/samuel/FV/sp-player-movement/src/Juego.cpp
+	"Juego.h"
+	<SFML/Graphics.hpp>
+
+1551899206 source:/home/samuel/FV/sp-player-movement/src/Player.cpp
+	"Player.h"
+	<SFML/Graphics.hpp>
+
