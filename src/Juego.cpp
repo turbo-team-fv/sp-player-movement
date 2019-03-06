@@ -26,13 +26,27 @@ sprite->setTexture(*tex);
 
 }
 
+void Juego::updateGameState(sf::Event e){
 
-void Juego::dibuja(){
+    switch(e.type){
 
+        //Si se recibe el evento de cerrar la ventana la cierro
+        case sf::Event::Closed:
+            ventana->close();
+            break;
+
+        //Se pulsó una tecla, imprimo su codigo
+        case sf::Event::KeyPressed:
+            pl.movePlayer(e);
+
+    }
+
+}
+
+void Juego::render(sf::RenderWindow * ventana){
 ventana->clear();
 ventana->draw(pl.getSprite());
 ventana->display();
-
 }
 
 void Juego::loop(){
@@ -44,25 +58,11 @@ void Juego::loop(){
         sf::Event event;
         while (ventana->pollEvent(event))
         {
-
-            switch(event.type){
-
-                //Si se recibe el evento de cerrar la ventana la cierro
-                case sf::Event::Closed:
-                    ventana->close();
-                    break;
-
-                //Se pulsó una tecla, imprimo su codigo
-                case sf::Event::KeyPressed:
-                   pl.movePlayer(event);//Esto se metera en un update mas adelante
-
-            }
+            updateGameState(event);
 
         }
+        render(ventana);
 
-        ventana->clear();
-        ventana->draw(pl.getSprite());
-        ventana->display();
     }
 
 }

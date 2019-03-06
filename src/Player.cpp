@@ -29,7 +29,7 @@ sf::Sprite Player::getSprite()
 {
     return spri;
 }
-void Player::movePlayer(sf::Event e)
+void Player::movePlayer(sf::Event e) //Esto tendrá que ser un int y no un event, el event en el update
 {
 
     //Verifico si se pulsa alguna tecla de movimiento

@@ -14,6 +14,9 @@ class Juego
     Juego(int resol_x, int resol_y, string gamename);
     void dibuja();
     void loop();
+    void render(sf::RenderWindow * ventana);
+    void updateGameState(sf::Event e);
+
 
     private:
     sf::RenderWindow * ventana;
