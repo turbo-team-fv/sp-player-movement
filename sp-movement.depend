@@ -26,20 +26,27 @@
 	<SFML/Graphics.hpp>
 	"Juego.h"
 
-1551902794 /home/samuel/FV/sp-player-movement/include/Juego.h
+1551952834 /home/samuel/FV/sp-player-movement/include/Juego.h
 	"Player.h"
 	<iostream>
+	<vector>
 	<SFML/Graphics.hpp>
 
-1551863988 /home/samuel/FV/sp-player-movement/include/Player.h
+1551951853 /home/samuel/FV/sp-player-movement/include/Player.h
 	<iostream>
+	<vector>
 	<SFML/Graphics.hpp>
 
-1551902719 source:/home/samuel/FV/sp-player-movement/src/Juego.cpp
+1551954669 source:/home/samuel/FV/sp-player-movement/src/Juego.cpp
 	"Juego.h"
 	<SFML/Graphics.hpp>
 
-1551902774 source:/home/samuel/FV/sp-player-movement/src/Player.cpp
+1551954744 source:/home/samuel/FV/sp-player-movement/src/Player.cpp
 	"Player.h"
 	<SFML/Graphics.hpp>
+
+1551948516 source:/home/samuel/FV/sp-player-movement/src/State.cpp
+	"State.h"
+
+1551948606 /home/samuel/FV/sp-player-movement/include/State.h
 

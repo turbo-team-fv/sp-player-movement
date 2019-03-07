@@ -10,20 +10,31 @@ Juego::Juego(int resol_x, int resol_y, string gamename)
 
 }
 
-void Juego::updateGameState(sf::Event e)
+void Juego::updateGameState()
 {
+    sf::Keyboard e;
 
-    switch(e.type)
+    if(e.isKeyPressed(sf::Keyboard::Escape))
     {
-
-    //Si se recibe el evento de cerrar la ventana la cierro
-    case sf::Event::Closed:
         ventana->close();
-        break;
+    }
+    if(e.isKeyPressed(sf::Keyboard::Right))
+    {
+        pl.movePlayer(kVel,0);
+    }
+    if(e.isKeyPressed(sf::Keyboard::Left))
+    {
+        pl.movePlayer(-kVel,0);
 
-    //Se pulsó una tecla, imprimo su codigo
-    case sf::Event::KeyPressed:
-        pl.movePlayer(e);
+    }
+    if(e.isKeyPressed(sf::Keyboard::Up))
+    {
+        pl.movePlayer(0,-kVel);
+
+    }
+    if(e.isKeyPressed(sf::Keyboard::Down))
+    {
+        pl.movePlayer(0,kVel);
 
     }
 
@@ -40,16 +51,20 @@ void Juego::loop()
 {
 
     //Bucle del juego
+    vector<float> lastPos(2);
+    sf::Event e;
     while (ventana->isOpen())
     {
-        //Bucle de obtención de eventos
-        sf::Event event;
-        while (ventana->pollEvent(event))
-        {
-            updateGameState(event);
+        ventana->pollEvent(e); //Por algun motivo, si dejo esto no pasa a estado de "Not responding"
 
+        if(updateClock.getElapsedTime().asMilliseconds() > UPDATE_TICK_TIME)
+        {
+            updateGameState();
         }
         render(ventana);
+
     }
 
 }
+
+

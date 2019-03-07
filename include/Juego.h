@@ -1,10 +1,10 @@
 #ifndef JUEGO_H
 #define JUEGO_H
-
-
 #include "Player.h"
 #include <iostream>
+#include <vector>
 #include <SFML/Graphics.hpp>
+#define UPDATE_TICK_TIME 1000/5
 using namespace std;
 
 
@@ -14,13 +14,14 @@ class Juego
     Juego(int resol_x, int resol_y, string gamename);
     void loop();
     void render(sf::RenderWindow * ventana);
-    void updateGameState(sf::Event e);
+    void updateGameState();
 
 
     private:
     sf::RenderWindow * ventana;
     sf::Clock clock;
     sf::Clock updateClock;
+    sf::Time restart;
     Player pl;
 
 };
