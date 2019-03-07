@@ -22,7 +22,7 @@ Player::Player()
     tex.loadFromFile("resources/sp_alien_texture.png");
     if (!tex.loadFromFile("resources/sp_alien_texture.png"))
     {
-        std::cerr << "Error cargando la imagen sprites.png";
+        std::cerr << "Error cargando la imagen sp_alien_texture.png";
         exit(0);
     }
     spri.setTexture(tex);
