@@ -3,6 +3,7 @@
 #include "Player.h"
 #include <iostream>
 #include <vector>
+#include <math.h>
 #include <SFML/Graphics.hpp>
 #define UPDATE_TICK_TIME 1000/5
 using namespace std;
@@ -22,6 +23,7 @@ class Juego
     sf::Clock clock;
     sf::Clock updateClock;
     sf::Time restart;
+    float acelX,acelY;//aceleracion
     Player pl;
 
 };
