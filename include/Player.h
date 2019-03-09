@@ -3,6 +3,8 @@
 #include <iostream>
 #include <vector>
 #include <SFML/Graphics.hpp>
+#include "State.h"
+#include "Render.h"
 #define kVel 5
 
 using namespace std;
@@ -15,6 +17,8 @@ class Player
     vector<float> pos;
     int dir;
     sf::IntRect frames[8];
+    Render			rState;
+	State       	pState;
 
 
 
@@ -25,7 +29,7 @@ class Player
         vector<float> getPos();
         void setDir(int d);
         sf::Sprite getSprite();
-        void updatePlayer();
+        void updatePlayer(float velx, float vely, sf::Time et);
 
     protected:
 

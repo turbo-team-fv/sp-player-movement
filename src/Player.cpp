@@ -77,6 +77,8 @@ void Player::movePlayer(float x, float y) //Esto tendrá que ser un int y no un 
 
 
 }
+void Player::updatePlayer(float velx, float vely, sf::Time et){
+}
 Player::~Player()
 {
     //dtor

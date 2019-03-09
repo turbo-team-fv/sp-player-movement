@@ -107,7 +107,6 @@ void Juego::updateGameState(sf::Time tpf)
     }
     if(evento==3)
     {
-
         if(acelX<5&&acelX>(-5))
             acelX-=1;
 
@@ -157,7 +156,8 @@ void Juego::updateGameState(sf::Time tpf)
             acelY +=0.1;
         //acelY -= 0
         //acelY -= 0.1f;
-        pl.movePlayer(xm+acelX,ym+acelY);
+        //pl.movePlayer(xm+acelX,ym+acelY);
+        pl.updatePlayer(xm+acelX,ym+acelY,elapsedTime);
 
     }
 
