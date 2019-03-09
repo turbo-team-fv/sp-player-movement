@@ -25,6 +25,7 @@ class Player
         vector<float> getPos();
         void setDir(int d);
         sf::Sprite getSprite();
+        void updatePlayer();
 
     protected:
 
