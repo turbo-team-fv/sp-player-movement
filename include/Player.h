@@ -16,7 +16,7 @@ class Player
     sf::Sprite spri;
     vector<float> pos;
     int dir;
-    sf::IntRect frames[8];
+    vector<sf::Rect<int> > frames;
     Render			rState;
 	State       	pState;
 
@@ -30,6 +30,7 @@ class Player
         void setDir(int d);
         sf::Sprite getSprite();
         void updatePlayer(float velx, float vely, sf::Time et);
+        void drawPlayer(sf::RenderWindow& w, float i);
 
     protected:
 

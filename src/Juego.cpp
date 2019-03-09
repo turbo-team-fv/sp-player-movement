@@ -172,7 +172,8 @@ void Juego::updateGameState(sf::Time tpf)
 void Juego::render(float i)
 {
     ventana->clear();
-    ventana->draw(pl.getSprite());
+    pl.drawPlayer(*ventana,i);
+    //ventana->draw(pl.getSprite());
     ventana->display();
 }
 

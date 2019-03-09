@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <SFML/Graphics.hpp>
+using namespace std;
 
 
 class State
@@ -11,8 +12,8 @@ class State
         State();
         virtual ~State();
 
-    float* getPosBef();
-    float* getPosNow();
+    vector<float> getPosBef();
+    vector<float> getPosNow();
     float getAcelX();
     float getAcelY();
     void setPosBef(float x, float y);
@@ -26,7 +27,7 @@ class State
 
 
     private:
-    float posNow[2],posBef[2];
+    vector<float> posNow,posBef;
     float acelX,acelY;
 };
 

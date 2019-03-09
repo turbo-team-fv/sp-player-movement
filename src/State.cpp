@@ -2,18 +2,18 @@
 
 State::State()
 {
-    posNow[0]=0.0,posNow[1]=0.0;
-    posBef[0]=0.0,posBef[1]=0.0;
+    posNow.push_back(0.0),posNow.push_back(0.0);
+    posBef.push_back(0.0),posBef.push_back(0.0);
     acelX=0.0,acelY=0.0;
 
 }
 
-float* State::getPosBef()
+vector<float> State::getPosBef()
 {
     return posBef;
 }
 
-float* State::getPosNow()
+vector<float> State::getPosNow()
 {
     return posNow;
 }
