@@ -12,14 +12,14 @@ class State
         State();
         virtual ~State();
 
-    vector<float> getPosBef();
-    vector<float> getPosNow();
-    float getAcelX();
-    float getAcelY();
-    void setPosBef(float x, float y);
-    void setPosNow(float x, float y);
-    void setAcelX(float ax);
-    void setAcelY(float ay);
+    vector<double> getPosBef();
+    vector<double> getPosNow();
+    vector<double> getAcel();
+
+    void setPosBef(double x, double y);
+    void setPosNow(double x, double y);
+    void setAcel(double ax,double ay);
+
 
     void updateState(sf::Time et);
 
@@ -27,8 +27,8 @@ class State
 
 
     private:
-    vector<float> posNow,posBef;
-    float acelX,acelY;
+    vector<double> posNow,posBef;
+    vector<double> acel;
 };
 
 #endif // STATE_H

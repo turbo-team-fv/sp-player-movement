@@ -14,7 +14,7 @@ class Player
     private:
     sf::Texture  tex;
     sf::Sprite spri;
-    vector<float> pos;
+    vector<double> pos;
     int dir;
     vector<sf::Rect<int> > frames;
     Render			rState;
@@ -25,12 +25,12 @@ class Player
     public:
         Player();
         virtual ~Player();
-        void movePlayer(float x, float y);
-        vector<float> getPos();
+        void movePlayer(double x, double y);
+        vector<double> getPos();
         void setDir(int d);
         sf::Sprite getSprite();
-        void updatePlayer(float velx, float vely, sf::Time et);
-        void drawPlayer(sf::RenderWindow& w, float i);
+        void updatePlayer(double velx, double vely, sf::Time et);
+        void drawPlayer(sf::RenderWindow& w, double i);
 
     protected:
 

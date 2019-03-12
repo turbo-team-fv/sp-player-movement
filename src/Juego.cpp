@@ -3,7 +3,7 @@
 using namespace std;
 
 /** GLOBAL **/
-const sf::Time Juego::timePerFrame = sf::seconds(1.f/1.f);
+const sf::Time Juego::timePerFrame = sf::milliseconds(1000.0/25.0);
 /** GLOBAL **/
 
 Juego::Juego(int resol_x, int resol_y, string gamename)
@@ -18,33 +18,31 @@ Juego::Juego(int resol_x, int resol_y, string gamename)
 void Juego::loop()
 {
 
-
-    //clock=clock;
-    sinceLastUpdate=sf::Time::Zero;
-    elapsedTime = clock.restart();
-
     while (ventana->isOpen())
     {
-        elapsedTime=clock.getElapsedTime();
-        sinceLastUpdate += elapsedTime;
-            //Actualizamos variables de tiempo
 
-
+        //Actualizamos variables de tiempo
         //Proceso mis eventos
+
         handleEvents();
         cout<<"Elapsed time: ";
-        cout<<elapsedTime.asMicroseconds()<<endl;
-        while (sinceLastUpdate > timePerFrame)  //Cuando llegue el momento de hacer update se hace
+        cout<<updateClock.getElapsedTime().asMilliseconds()<<endl;
+        cout<<"Update tick: ";
+        cout<<timePerFrame.asMilliseconds()<<endl;
+
+        if(updateClock.getElapsedTime().asMilliseconds()>timePerFrame.asMilliseconds())
         {
-         elapsedTime = clock.restart();//el reloj se reinicia aqui aqui
-
+//         elapsedTime = clock.restart();//el reloj se reinicia aqui aqui
+            elapsedTime=updateClock.restart();
             cout<<"Time to update"<<endl;
-            sinceLastUpdate-=timePerFrame;
-
-            updateGameState(sinceLastUpdate);
+            updateGameState(elapsedTime);
         }
+
         //Se calcula el porcentaje de interpolacion
-        interpolation = (float)std::min(1.f, sinceLastUpdate.asSeconds() / timePerFrame.asSeconds());
+        interpolation = std::min(1.0,(double)updateClock.getElapsedTime().asMilliseconds() / (double)timePerFrame.asMilliseconds());
+
+        cout<<"Interpolacion: ";
+        cout<<interpolation<<endl;
         render(interpolation);
 
         void muestraDatos();
@@ -74,14 +72,14 @@ void Juego::muestraDatos()
     Text.setRotation(90.f);
     Text.setScale(1.f, 1.f);
     Text.move(240.f, 200.f);
-   ventana->draw(Text);
+    ventana->draw(Text);
 }
 
 void Juego::handleEvents()
 {
 
     sf::Event event;
-    while (ventana->pollEvent(event))
+    if (ventana->pollEvent(event))
     {
         cout<<"Polling event"<<endl;
 
@@ -107,34 +105,38 @@ void Juego::handleEvents()
 void Juego::handleInputs(sf::Keyboard::Key key, bool isPressed)
 {
 
-if(isPressed){
-
-    switch (key)
+   if(isPressed)
     {
-    case sf::Keyboard::Up :
-        evento=1;
-        break;
-    case sf::Keyboard::Down :
-        evento=2;
-        break;
-    case sf::Keyboard::Left :
-        evento=3;
-        break;
-    case sf::Keyboard::Right :
-        evento=4;
-        break;
 
+        switch (key)
+        {
+        case sf::Keyboard::Up :
+            evento=1;
+            break;
+        case sf::Keyboard::Down :
+            evento=2;
+            break;
+        case sf::Keyboard::Left :
+            evento=3;
+            break;
+        case sf::Keyboard::Right :
+            evento=4;
+            break;
+
+
+        }
 
     }
-    }else{
-    evento=0;
+    else
+    {
+        evento=0;
     }
 
 }
 
 void Juego::updateGameState(sf::Time t)
 {
-    float xm=0,ym=0;
+    double xm=0,ym=0;
 
     /*if(evento==4)
     {
@@ -207,14 +209,14 @@ void Juego::updateGameState(sf::Time t)
     {
 
 
-        xm+=10;
+        xm+=100;
         ym=0;
         pl.setDir(ym);
     }
     if(evento==3)
     {
 
-        xm-=10;
+        xm-=100;
         ym=0;
         pl.setDir(1);
     }
@@ -223,13 +225,13 @@ void Juego::updateGameState(sf::Time t)
 
 
         xm=0;
-        ym-=10;
+        ym-=100;
         pl.setDir(2);
     }
     if(evento==2)
     {
         xm=0;
-        ym+=10;
+        ym+=100;
         pl.setDir(3);
     }//pl.updatePlayer(xm+acelX,ym+acelY,t);
     pl.updatePlayer(xm,ym,t);
@@ -241,7 +243,7 @@ void Juego::updateGameState(sf::Time t)
 
 }
 
-void Juego::render(float i)
+void Juego::render(double i)
 {
     ventana->clear();
     pl.drawPlayer(*ventana,i);

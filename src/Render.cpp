@@ -20,7 +20,7 @@ void Render::SetTexture(sf::Texture &tex)
     sprite = sf::Sprite(tex);
 }
 
-void Render::SetSprite(float u,float v,sf::IntRect s,float x, float y,float scale)
+void Render::SetSprite(double u,double v,sf::IntRect s,double x, double y,double scale)
 {
 
     sprite.setOrigin(u,v);
@@ -30,19 +30,20 @@ void Render::SetSprite(float u,float v,sf::IntRect s,float x, float y,float scal
 
 }
 
-void Render::Draw(sf::RenderWindow &window, const vector<float> &posBef,const vector<float> &posNow, float interpolation)
+void Render::Draw(sf::RenderWindow &window, const vector<double> &posBef,const vector<double> &posNow, double interpolation)
 {
     cout<<"Posicion anterior: ";
     cout<<posBef[0]<<" "<<posBef[1];
     cout<<"Posicion ahora: ";
     cout<<posNow[0]<<" "<<posNow[1]<<endl;
 
-    cout<<"Interpolacion: ";
-    cout<<interpolation<<endl;
 
 
     renderPos[0]=(posNow[0]-posBef[0])*interpolation+posBef[0];
      renderPos[1]=(posNow[1]-posBef[1])*interpolation+posBef[1];
+
+     renderPos[0]=posBef[0]*(1-interpolation)+posNow[0]*interpolation;
+     renderPos[1]=posBef[1]*(1-interpolation)+posNow[1]*interpolation;
 
 
 

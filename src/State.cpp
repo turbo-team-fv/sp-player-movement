@@ -4,56 +4,48 @@ State::State()
 {
     posNow.push_back(0.0),posNow.push_back(0.0);
     posBef.push_back(0.0),posBef.push_back(0.0);
-    acelX=0.0,acelY=0.0;
+    acel.push_back(0.0),acel.push_back(0.0);
 
 }
 
-vector<float> State::getPosBef()
+vector<double> State::getPosBef()
 {
     return posBef;
 }
 
-vector<float> State::getPosNow()
+vector<double> State::getPosNow()
 {
     return posNow;
 }
 
-float State::getAcelX()
+vector<double> State::getAcel()
 {
-    return acelX;
-}
-float State::getAcelY()
-{
-    return acelY;
+    return acel;
 }
 
-void State::setPosNow(float x, float y)
+
+void State::setPosNow(double x, double y)
 {
     posNow[0]=x,posNow[1]=y;
 }
-void State::setPosBef(float x, float y)
+void State::setPosBef(double x, double y)
 {
     posBef[0]=x,posBef[1]=y;
 }
-void State::setAcelX(float ax)
+void State::setAcel(double ax, double ay)
 {
-    acelX=ax;
-}
-
-void State::setAcelY(float ay)
-{
-    acelY=ay;
+   acel[0]=ax;
+   acel[1]=ay;
 }
 
 void State::updateState(sf::Time et)
 {
 
-    posBef[0] = posNow[0];
-    posBef[1] = posNow[1];
+    posBef=posNow;
     //posNow[0] += acelX * et.asSeconds();
     //posNow[1] += acelY * et.asSeconds();
-    posNow[0] += acelX;
-    posNow[1] += acelY;
+    posNow[0] += acel[0]*et.asSeconds();
+    posNow[1] += acel[1]*et.asSeconds();
 
 }
 

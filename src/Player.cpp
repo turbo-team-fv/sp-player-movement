@@ -36,7 +36,7 @@ sf::Sprite Player::getSprite()
 {
     return spri;
 }
-vector<float> Player::getPos()
+vector<double> Player::getPos()
 {
     return pos;
 }
@@ -47,7 +47,7 @@ void Player::setDir(int d)
         dir=d;
     }
 }
-void Player::movePlayer(float x, float y) //Esto tendrá que ser un int y no un event, el event en el update
+void Player::movePlayer(double x, double y) //Esto tendrá que ser un int y no un event, el event en el update
 {
 
     /*
@@ -75,15 +75,16 @@ void Player::movePlayer(float x, float y) //Esto tendrá que ser un int y no un 
 
 
 }
-void Player::updatePlayer(float velx, float vely, sf::Time et)
+void Player::updatePlayer(double velx, double vely, sf::Time et)
 {
 
-    pState.setAcelX(velx);
-    pState.setAcelY(vely);
+    //pState.setAcelX(velx);
+    //pState.setAcelY(vely);
+    pState.setAcel(velx,vely);
     pState.updateState(et);
 
 }
-void Player::drawPlayer(sf::RenderWindow& w, float i)
+void Player::drawPlayer(sf::RenderWindow& w, double i)
 {
 
     rState.Draw(w, pState.getPosBef(), pState.getPosNow(), i);

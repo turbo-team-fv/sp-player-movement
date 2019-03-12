@@ -14,7 +14,7 @@ class Juego
     public:
     Juego(int resol_x, int resol_y, string gamename);
     void loop();
-    void render(float i);//Se le pasa la interpolacion
+    void render(double i);//Se le pasa la interpolacion
     void updateGameState(sf::Time et);
     void handleEvents();
     void handleInputs(sf::Keyboard::Key key, bool isPressed);
@@ -33,15 +33,15 @@ class Juego
     //Material interpolacion
     sf::Clock clock;
     sf::Clock updateClock;
-    sf::Time restart;
-    sf::Time sinceLastUpdate; //Tiempo desde la ultima actualizacion
+    //sf::Time restart;
+    //sf::Time sinceLastUpdate; //Tiempo desde la ultima actualizacion
     sf::Time elapsedTime;
     //Material interpolacion
     Player pl;
 
     int evento; //1 arriba, 2 abajo, 3 izquierda, 4 derecha. 0 release
-    float acelX,acelY;//aceleracion
-    float interpolation;
+    double acelX,acelY;//aceleracion
+    double interpolation;
 
 };
 
