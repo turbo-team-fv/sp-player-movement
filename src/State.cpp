@@ -27,11 +27,11 @@ float State::getAcelY()
     return acelY;
 }
 
-void State::setPosBef(float x, float y)
+void State::setPosNow(float x, float y)
 {
     posNow[0]=x,posNow[1]=y;
 }
-void State::setPosNow(float x, float y)
+void State::setPosBef(float x, float y)
 {
     posBef[0]=x,posBef[1]=y;
 }
@@ -50,8 +50,10 @@ void State::updateState(sf::Time et)
 
     posBef[0] = posNow[0];
     posBef[1] = posNow[1];
-    posNow[0] += acelX * et.asSeconds();
-    posNow[1] += acelY * et.asSeconds();
+    //posNow[0] += acelX * et.asSeconds();
+    //posNow[1] += acelY * et.asSeconds();
+    posNow[0] += acelX;
+    posNow[1] += acelY;
 
 }
 

@@ -18,6 +18,7 @@ class Juego
     void updateGameState(sf::Time et);
     void handleEvents();
     void handleInputs(sf::Keyboard::Key key, bool isPressed);
+    void muestraDatos();
 
 
 
@@ -28,6 +29,7 @@ class Juego
     /**GLOBAL **/
 
     sf::RenderWindow * ventana;
+     sf::Text Text;
     //Material interpolacion
     sf::Clock clock;
     sf::Clock updateClock;

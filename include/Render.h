@@ -1,6 +1,7 @@
 #ifndef RENDER_H
 #define RENDER_H
 #include <vector>
+#include <iostream>
 
 #include <SFML/Graphics.hpp>
 using namespace std;

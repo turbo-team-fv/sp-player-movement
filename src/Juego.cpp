@@ -3,7 +3,7 @@
 using namespace std;
 
 /** GLOBAL **/
-const sf::Time Juego::timePerFrame = sf::seconds(1.f/15.f);
+const sf::Time Juego::timePerFrame = sf::seconds(1.f/1.f);
 /** GLOBAL **/
 
 Juego::Juego(int resol_x, int resol_y, string gamename)
@@ -18,85 +18,125 @@ Juego::Juego(int resol_x, int resol_y, string gamename)
 void Juego::loop()
 {
 
+
     //clock=clock;
     sinceLastUpdate=sf::Time::Zero;
+    elapsedTime = clock.restart();
 
     while (ventana->isOpen())
     {
-       elapsedTime = clock.restart();     //Actualizamos variables de tiempo
-		sinceLastUpdate += elapsedTime;
+        elapsedTime=clock.getElapsedTime();
+        sinceLastUpdate += elapsedTime;
+            //Actualizamos variables de tiempo
+
 
         //Proceso mis eventos
         handleEvents();
         cout<<"Elapsed time: ";
         cout<<elapsedTime.asMicroseconds()<<endl;
-       while (sinceLastUpdate > timePerFrame){ //Cuando llegue el momento de hacer update se hace
+        while (sinceLastUpdate > timePerFrame)  //Cuando llegue el momento de hacer update se hace
+        {
+         elapsedTime = clock.restart();//el reloj se reinicia aqui aqui
 
             cout<<"Time to update"<<endl;
             sinceLastUpdate-=timePerFrame;
 
-            updateGameState(timePerFrame);
+            updateGameState(sinceLastUpdate);
         }
         //Se calcula el porcentaje de interpolacion
         interpolation = (float)std::min(1.f, sinceLastUpdate.asSeconds() / timePerFrame.asSeconds());
         render(interpolation);
 
+        void muestraDatos();
+
+
+
     }
 
 }
 
-void Juego::handleEvents(){
+void Juego::muestraDatos()
+{
 
-sf::Event event;
-	while (ventana->pollEvent(event))
-	{
-	cout<<"Polling event"<<endl;
-		switch (event.type)
-		{
-			case sf::Event::KeyPressed:
-                cout<<"Key pressed"<<endl;
-				handleInputs(event.key.code, true);
-				break;
+    sf::Font MyFont;
 
-			case sf::Event::KeyReleased:
-				handleInputs(event.key.code, false);
-				break;
+// Load from a font file on disk
 
-			case sf::Event::Closed:
-				ventana->close();
-				break;
-		}
-	}
+    if (!MyFont.loadFromFile("resources/Lato-Regular.ttf"))
+    {
+        // Error...
+    }
+
+
+    Text.setFont(MyFont);
+    Text.setString("Hello Bitch");
+    Text.setColor(sf::Color(250, 250, 250));
+    Text.setRotation(90.f);
+    Text.setScale(1.f, 1.f);
+    Text.move(240.f, 200.f);
+   ventana->draw(Text);
+}
+
+void Juego::handleEvents()
+{
+
+    sf::Event event;
+    while (ventana->pollEvent(event))
+    {
+        cout<<"Polling event"<<endl;
+
+        switch (event.type)
+        {
+        case sf::Event::KeyPressed:
+            cout<<"Key pressed"<<endl;
+            handleInputs(event.key.code, true);
+            break;
+
+        case sf::Event::KeyReleased:
+            handleInputs(event.key.code, false);
+            break;
+
+        case sf::Event::Closed:
+            ventana->close();
+            break;
+        }
+    }
 
 }
 
 void Juego::handleInputs(sf::Keyboard::Key key, bool isPressed)
 {
 
+if(isPressed){
 
-    switch (key){
+    switch (key)
+    {
     case sf::Keyboard::Up :
-    evento=1;
-    break;
+        evento=1;
+        break;
     case sf::Keyboard::Down :
-    evento=2;
-    break;
+        evento=2;
+        break;
     case sf::Keyboard::Left :
-    evento=3;
-    break;
+        evento=3;
+        break;
     case sf::Keyboard::Right :
-    evento=4;
-    break;
+        evento=4;
+        break;
 
+
+    }
+    }else{
+    evento=0;
     }
 
 }
 
-void Juego::updateGameState(sf::Time tpf)
+void Juego::updateGameState(sf::Time t)
 {
     float xm=0,ym=0;
 
-    if(evento==4)
+    /*if(evento==4)
     {
         if(acelX<5&&acelX>(-5))
             acelX+=1;
@@ -116,9 +156,11 @@ void Juego::updateGameState(sf::Time tpf)
     }
     if(evento==1)
     {
-        if(acelY<5&&acelY>(-5)){
-        acelY-=1;
-        cout<<"Biiitch"<<endl;}
+        if(acelY<5&&acelY>(-5))
+        {
+            acelY-=1;
+            cout<<"Biiitch"<<endl;
+        }
 
 
         xm=0;
@@ -157,10 +199,40 @@ void Juego::updateGameState(sf::Time tpf)
         //acelY -= 0
         //acelY -= 0.1f;
         //pl.movePlayer(xm+acelX,ym+acelY);
-        pl.updatePlayer(xm+acelX,ym+acelY,elapsedTime);
 
+
+    }*/
+
+    if(evento==4)
+    {
+
+
+        xm+=10;
+        ym=0;
+        pl.setDir(ym);
     }
+    if(evento==3)
+    {
 
+        xm-=10;
+        ym=0;
+        pl.setDir(1);
+    }
+    if(evento==1)
+    {
+
+
+        xm=0;
+        ym-=10;
+        pl.setDir(2);
+    }
+    if(evento==2)
+    {
+        xm=0;
+        ym+=10;
+        pl.setDir(3);
+    }//pl.updatePlayer(xm+acelX,ym+acelY,t);
+    pl.updatePlayer(xm,ym,t);
     // pl.movePlayer(0,0);
 
 
