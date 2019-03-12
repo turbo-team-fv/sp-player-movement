@@ -47,34 +47,7 @@ void Player::setDir(int d)
         dir=d;
     }
 }
-void Player::movePlayer(double x, double y) //Esto tendrá que ser un int y no un event, el event en el update
-{
 
-    /*
-        pos[0]+=x;
-        pos[1]+=y;
-        //Cambio dirección de los sprites
-        int sp_num;
-        switch(dir){
-        case 0:sp_num=4;
-        break;
-        case 1:sp_num=6;
-        break;
-        case 2:sp_num=2;
-        break;
-        case 3:sp_num=0;
-        break;
-        default:sp_num=2;
-        }
-
-        spri.setOrigin(frames[sp_num].width/2,frames[sp_num].height/2);
-        spri.setTextureRect(frames[sp_num]);
-        spri.setPosition(pos[0],pos[1]);
-    */
-    //std::cout <<x << std::endl;
-
-
-}
 void Player::updatePlayer(double velx, double vely, sf::Time et)
 {
 

@@ -10,7 +10,7 @@ Juego::Juego(int resol_x, int resol_y, string gamename)
 {
 
     ventana= new sf::RenderWindow(sf::VideoMode(resol_x,resol_y),gamename);
-    ventana->setFramerateLimit(60);
+    ventana->setFramerateLimit(25);
     ventana->setVerticalSyncEnabled(true); //Para evitar cortes en los refrescos
     evento=0;//Release
 

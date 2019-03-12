@@ -40,10 +40,10 @@ void Render::Draw(sf::RenderWindow &window, const vector<double> &posBef,const v
 
 
     renderPos[0]=(posNow[0]-posBef[0])*interpolation+posBef[0];
-     renderPos[1]=(posNow[1]-posBef[1])*interpolation+posBef[1];
+    renderPos[1]=(posNow[1]-posBef[1])*interpolation+posBef[1];
 
-     renderPos[0]=posBef[0]*(1-interpolation)+posNow[0]*interpolation;
-     renderPos[1]=posBef[1]*(1-interpolation)+posNow[1]*interpolation;
+     //renderPos[0]=posBef[0]*(1-interpolation)+posNow[0]*interpolation;
+     //renderPos[1]=posBef[1]*(1-interpolation)+posNow[1]*interpolation;
 
 
 
