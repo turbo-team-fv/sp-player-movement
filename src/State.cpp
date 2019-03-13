@@ -18,11 +18,6 @@ vector<double> State::getPosNow()
     return posNow;
 }
 
-vector<double> State::getVel()
-{
-    return vel;
-}
-
 
 void State::setPosNow(double x, double y)
 {
@@ -41,32 +36,32 @@ void State::setVel(double ax, double ay, bool acelerado)
         vel[0]+=ax;
         vel[1]+=ay;
 
-        if (vel[0]<=5.0&&vel[0]>=-5.0)
+        if (vel[0]<=7.0&&vel[0]>=-7.0)
         {
             vel[0] = 0.0;
         }
         else
         {
             //decrease the speed
-            if(vel[0]>5.0)
-                vel[0] -= 5.0;
+            if(vel[0]>7.0)
+                vel[0] -= 7.0;
 
-            if(vel[0]<-5.0)
-                vel[0] += 5.0;
+            if(vel[0]<-7.0)
+                vel[0] += 7.0;
         }
 
-        if (vel[1]<=5.0&&vel[1]>=-5.0)
+        if (vel[1]<=7.0&&vel[1]>=-7.0)
         {
             vel[1] = 0.0;
         }
         else
         {
             //decrease the speed
-            if(vel[1]>5.0)
-                vel[1] -= 5.0;
+            if(vel[1]>7.0)
+                vel[1] -= 7.0;
 
-            if(vel[1]<-5.0)
-                vel[1] += 5.0;
+            if(vel[1]<-7.0)
+                vel[1] += 7.0;
         }
     }
     else//MOTOR SIMPLE
@@ -82,13 +77,6 @@ void State::updateState(sf::Time et)
 {
 
     posBef=posNow;
-    //posNow[0] += acelX * et.asSeconds();
-    //posNow[1] += acelY * et.asSeconds();
-
-    cout<<"LETS UPDATE"<<endl;
-
-    //if your speed is close to 0, stop
-
 
     posNow[0] += vel[0]*et.asSeconds();
     posNow[1] += vel[1]*et.asSeconds();

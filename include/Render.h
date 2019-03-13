@@ -14,6 +14,7 @@ public:
 	void SetTexture(sf::Texture &tex);
 	void SetSprite(double u,double v,sf::IntRect s,double x, double y,double scale);
 	void Draw(sf::RenderWindow &window, const vector<double> &posBef,const vector<double> &posNow, double interpolation);
+	void SetRect(sf::IntRect s);
 	sf::Sprite &GetSprite() { return sprite; }
 	vector<double> GetRenderPosition() const { return renderPos; }
 
