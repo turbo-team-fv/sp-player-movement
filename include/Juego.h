@@ -40,6 +40,10 @@ class Juego
     Player pl;
 
     int evento; //1 arriba, 2 abajo, 3 izquierda, 4 derecha. 0 release
+    bool			eUp;
+    bool			eDown;
+    bool			eRight;
+    bool			eLeft;
     double acelX,acelY;//aceleracion
     double interpolation;
 

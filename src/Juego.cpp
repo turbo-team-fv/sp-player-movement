@@ -10,9 +10,13 @@ Juego::Juego(int resol_x, int resol_y, string gamename)
 {
 
     ventana= new sf::RenderWindow(sf::VideoMode(resol_x,resol_y),gamename);
-    ventana->setFramerateLimit(25);
+    //ventana->setFramerateLimit(0);
     ventana->setVerticalSyncEnabled(true); //Para evitar cortes en los refrescos
     evento=0;//Release
+    eUp=false;
+    eDown=false;
+    eLeft=false;
+    eRight=false;
 
 }
 void Juego::loop()
@@ -25,24 +29,24 @@ void Juego::loop()
         //Proceso mis eventos
 
         handleEvents();
-        cout<<"Elapsed time: ";
+        /*cout<<"Elapsed time: ";
         cout<<updateClock.getElapsedTime().asMilliseconds()<<endl;
         cout<<"Update tick: ";
-        cout<<timePerFrame.asMilliseconds()<<endl;
+        cout<<timePerFrame.asMilliseconds()<<endl;*/
 
         if(updateClock.getElapsedTime().asMilliseconds()>timePerFrame.asMilliseconds())
         {
 //         elapsedTime = clock.restart();//el reloj se reinicia aqui aqui
             elapsedTime=updateClock.restart();
-            cout<<"Time to update"<<endl;
+            /*cout<<"Time to update"<<endl;*/
             updateGameState(elapsedTime);
         }
 
         //Se calcula el porcentaje de interpolacion
         interpolation = std::min(1.0,(double)updateClock.getElapsedTime().asMilliseconds() / (double)timePerFrame.asMilliseconds());
 
-        cout<<"Interpolacion: ";
-        cout<<interpolation<<endl;
+        /*cout<<"Interpolacion: ";
+        cout<<interpolation<<endl;*/
         render(interpolation);
 
         void muestraDatos();
@@ -105,141 +109,49 @@ void Juego::handleEvents()
 void Juego::handleInputs(sf::Keyboard::Key key, bool isPressed)
 {
 
-   if(isPressed)
-    {
-
-        switch (key)
-        {
-        case sf::Keyboard::Up :
-            evento=1;
-            break;
-        case sf::Keyboard::Down :
-            evento=2;
-            break;
-        case sf::Keyboard::Left :
-            evento=3;
-            break;
-        case sf::Keyboard::Right :
-            evento=4;
-            break;
-
-
-        }
-
-    }
-    else
-    {
-        evento=0;
-    }
+    if (key == sf::Keyboard::Up)            //Traslaciones
+		eUp = isPressed;
+	else if (key == sf::Keyboard::Down)
+		eDown = isPressed;
+	else if (key == sf::Keyboard::Left)
+		eLeft = isPressed;
+	else if (key == sf::Keyboard::Right)
+		eRight = isPressed;
 
 }
 
 void Juego::updateGameState(sf::Time t)
 {
-    double xm=0,ym=0;
 
-    /*if(evento==4)
+    double velx=0,vely=0;
+
+    if(eRight)
     {
-        if(acelX<5&&acelX>(-5))
-            acelX+=1;
-
-        xm+=acelX;
-        ym=0;
-        pl.setDir(ym);
+        /*pl.increaseVelo(15.0,0.0);
+        pl.setDir(0);*/
+        velx=15.0;
+        vely=0.0;
     }
-    if(evento==3)
+    if(eLeft)
     {
-        if(acelX<5&&acelX>(-5))
-            acelX-=1;
-
-        xm+=acelX;
-        ym=0;
-        pl.setDir(1);
+        velx=-15.0;
+        vely=0.0;
     }
-    if(evento==1)
+    if(eUp)
     {
-        if(acelY<5&&acelY>(-5))
-        {
-            acelY-=1;
-            cout<<"Biiitch"<<endl;
-        }
-
-
-        xm=0;
-        ym+=acelY;
-        pl.setDir(2);
+        velx=0.0;
+        vely=-15.0;
     }
-    if(evento==2)
+    if(eDown)
     {
-        if(acelY<5&&acelY>(-5))
-            acelY+=1;
+        velx=0.0;
+        vely=15.0;
 
-        xm=0;
-        ym+=acelY;
-        pl.setDir(3);
     }
 
 
-    if (((acelY)>-0.25&&(acelY)<0.25) && ((acelX)>-0.25&&(acelX)<0.25) )
-    {
-        acelY = 0,acelX=0;
-    }
-    else
-    {
-        //decrease the speed
-        if(acelX>0)
-            acelX -= 0.1f;
-
-        if(acelX<0)
-            acelX +=0.1;
-
-        if(acelY>0)
-            acelY -= 0.1f;
-
-        if(acelY<0)
-            acelY +=0.1;
-        //acelY -= 0
-        //acelY -= 0.1f;
-        //pl.movePlayer(xm+acelX,ym+acelY);
-
-
-    }*/
-
-    if(evento==4)
-    {
-
-
-        xm+=100;
-        ym=0;
-        pl.setDir(ym);
-    }
-    if(evento==3)
-    {
-
-        xm-=100;
-        ym=0;
-        pl.setDir(1);
-    }
-    if(evento==1)
-    {
-
-
-        xm=0;
-        ym-=100;
-        pl.setDir(2);
-    }
-    if(evento==2)
-    {
-        xm=0;
-        ym+=100;
-        pl.setDir(3);
-    }//pl.updatePlayer(xm+acelX,ym+acelY,t);
-    pl.updatePlayer(xm,ym,t);
-    // pl.movePlayer(0,0);
-
-
-
-
+    //pl.updatePlayer(pl.getVelo()[0],pl.getVelo()[1],t);
+    pl.updatePlayer(velx,vely,t);
 
 }
 

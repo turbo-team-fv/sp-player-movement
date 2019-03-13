@@ -14,11 +14,11 @@ class State
 
     vector<double> getPosBef();
     vector<double> getPosNow();
-    vector<double> getAcel();
+    vector<double> getVel();
 
     void setPosBef(double x, double y);
     void setPosNow(double x, double y);
-    void setAcel(double ax,double ay);
+    void setVel(double ax,double ay);
 
 
     void updateState(sf::Time et);
@@ -28,7 +28,7 @@ class State
 
     private:
     vector<double> posNow,posBef;
-    vector<double> acel;
+    vector<double> vel;
 };
 
 #endif // STATE_H

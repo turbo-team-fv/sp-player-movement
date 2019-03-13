@@ -32,10 +32,10 @@ void Render::SetSprite(double u,double v,sf::IntRect s,double x, double y,double
 
 void Render::Draw(sf::RenderWindow &window, const vector<double> &posBef,const vector<double> &posNow, double interpolation)
 {
-    cout<<"Posicion anterior: ";
+    /*cout<<"Posicion anterior: ";
     cout<<posBef[0]<<" "<<posBef[1];
     cout<<"Posicion ahora: ";
-    cout<<posNow[0]<<" "<<posNow[1]<<endl;
+    cout<<posNow[0]<<" "<<posNow[1]<<endl;*/
 
 
 

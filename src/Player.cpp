@@ -13,6 +13,7 @@ Player::Player(): rState(),pState()
     frames.push_back(sf::IntRect(54, 100,40, 44));//SideR 1
     frames.push_back(sf::IntRect(2, 50,40, 46));//SideL 0
     frames.push_back(sf::IntRect(50, 52,40, 44));//SideL 1
+    velo.push_back(0.0),velo.push_back(0.0);
 
     //pos.push_back(320.0);
     //pos.push_back(240.0);
@@ -40,6 +41,8 @@ vector<double> Player::getPos()
 {
     return pos;
 }
+
+
 void Player::setDir(int d)
 {
     if(d>=0)
@@ -47,13 +50,13 @@ void Player::setDir(int d)
         dir=d;
     }
 }
-
+State Player::getState(){
+return pState;
+}
 void Player::updatePlayer(double velx, double vely, sf::Time et)
 {
 
-    //pState.setAcelX(velx);
-    //pState.setAcelY(vely);
-    pState.setAcel(velx,vely);
+    pState.setVel(velx,vely);
     pState.updateState(et);
 
 }

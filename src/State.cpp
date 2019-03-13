@@ -4,7 +4,7 @@ State::State()
 {
     posNow.push_back(0.0),posNow.push_back(0.0);
     posBef.push_back(0.0),posBef.push_back(0.0);
-    acel.push_back(0.0),acel.push_back(0.0);
+    vel.push_back(0.0),vel.push_back(0.0);
 
 }
 
@@ -18,9 +18,9 @@ vector<double> State::getPosNow()
     return posNow;
 }
 
-vector<double> State::getAcel()
+vector<double> State::getVel()
 {
-    return acel;
+    return vel;
 }
 
 
@@ -32,10 +32,11 @@ void State::setPosBef(double x, double y)
 {
     posBef[0]=x,posBef[1]=y;
 }
-void State::setAcel(double ax, double ay)
+void State::setVel(double ax, double ay)
 {
-   acel[0]=ax;
-   acel[1]=ay;
+    vel[0]+=ax;
+    vel[1]+=ay;
+
 }
 
 void State::updateState(sf::Time et)
@@ -44,8 +45,48 @@ void State::updateState(sf::Time et)
     posBef=posNow;
     //posNow[0] += acelX * et.asSeconds();
     //posNow[1] += acelY * et.asSeconds();
-    posNow[0] += acel[0]*et.asSeconds();
-    posNow[1] += acel[1]*et.asSeconds();
+
+    cout<<"LETS UPDATE"<<endl;
+
+     //if your speed is close to 0, stop
+        if (vel[0]<=5.0&&vel[0]>=-5.0)
+        {
+            vel[0] = 0.0;
+        }
+        else
+        {
+            //decrease the speed
+            if(vel[0]>5.0)
+             vel[0] -= 5.0;
+
+            if(vel[0]<-5.0)
+             vel[0] += 5.0;
+        }
+
+        if (vel[1]<=5.0&&vel[1]>=-5.0)
+        {
+            vel[1] = 0.0;
+        }
+        else
+        {
+            //decrease the speed
+            if(vel[1]>5.0)
+             vel[1] -= 5.0;
+
+            if(vel[1]<-5.0)
+             vel[1] += 5.0;
+        }
+
+        posNow[0] += vel[0]*et.asSeconds();
+        posNow[1] += vel[1]*et.asSeconds();
+
+
+
+
+
+
+
+
 
 }
 
