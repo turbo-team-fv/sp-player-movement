@@ -18,7 +18,7 @@ class State
 
     void setPosBef(double x, double y);
     void setPosNow(double x, double y);
-    void setVel(double ax,double ay);
+    void setVel(double ax,double ay,bool acelerado);
 
 
     void updateState(sf::Time et);

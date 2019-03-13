@@ -32,10 +32,49 @@ void State::setPosBef(double x, double y)
 {
     posBef[0]=x,posBef[1]=y;
 }
-void State::setVel(double ax, double ay)
+void State::setVel(double ax, double ay, bool acelerado)
 {
-    vel[0]+=ax;
-    vel[1]+=ay;
+
+    if(acelerado)//MOTOR CON ACELERACION
+    {
+
+        vel[0]+=ax;
+        vel[1]+=ay;
+
+        if (vel[0]<=5.0&&vel[0]>=-5.0)
+        {
+            vel[0] = 0.0;
+        }
+        else
+        {
+            //decrease the speed
+            if(vel[0]>5.0)
+                vel[0] -= 5.0;
+
+            if(vel[0]<-5.0)
+                vel[0] += 5.0;
+        }
+
+        if (vel[1]<=5.0&&vel[1]>=-5.0)
+        {
+            vel[1] = 0.0;
+        }
+        else
+        {
+            //decrease the speed
+            if(vel[1]>5.0)
+                vel[1] -= 5.0;
+
+            if(vel[1]<-5.0)
+                vel[1] += 5.0;
+        }
+    }
+    else//MOTOR SIMPLE
+    {
+
+        vel[0]=ax;
+        vel[1]=ay;
+    }
 
 }
 
@@ -48,37 +87,11 @@ void State::updateState(sf::Time et)
 
     cout<<"LETS UPDATE"<<endl;
 
-     //if your speed is close to 0, stop
-        if (vel[0]<=5.0&&vel[0]>=-5.0)
-        {
-            vel[0] = 0.0;
-        }
-        else
-        {
-            //decrease the speed
-            if(vel[0]>5.0)
-             vel[0] -= 5.0;
+    //if your speed is close to 0, stop
 
-            if(vel[0]<-5.0)
-             vel[0] += 5.0;
-        }
 
-        if (vel[1]<=5.0&&vel[1]>=-5.0)
-        {
-            vel[1] = 0.0;
-        }
-        else
-        {
-            //decrease the speed
-            if(vel[1]>5.0)
-             vel[1] -= 5.0;
-
-            if(vel[1]<-5.0)
-             vel[1] += 5.0;
-        }
-
-        posNow[0] += vel[0]*et.asSeconds();
-        posNow[1] += vel[1]*et.asSeconds();
+    posNow[0] += vel[0]*et.asSeconds();
+    posNow[1] += vel[1]*et.asSeconds();
 
 
 

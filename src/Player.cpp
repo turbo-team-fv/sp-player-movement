@@ -56,7 +56,7 @@ return pState;
 void Player::updatePlayer(double velx, double vely, sf::Time et)
 {
 
-    pState.setVel(velx,vely);
+    pState.setVel(velx,vely,true);//Cambia el booleano para quitar aceleracion o ponerla
     pState.updateState(et);
 
 }
