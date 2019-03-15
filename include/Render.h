@@ -12,6 +12,7 @@ public:
 	Render(const Render& orig);
 	virtual ~Render();
 	void SetTexture(sf::Texture &tex);
+	void SetAnimation(int f);
 	void SetSprite(double u,double v,sf::IntRect s,double x, double y,double scale);
 	void Draw(sf::RenderWindow &window, const vector<double> &posBef,const vector<double> &posNow, double interpolation);
 	void SetRect(sf::IntRect s);
@@ -21,6 +22,9 @@ public:
 private:
 	sf::Sprite	sprite;
 	vector<double> renderPos;
+	sf::Clock clock;
+	sf::Time elapsed;
+	int aframe;
 };
 
 #endif // RENDER_H

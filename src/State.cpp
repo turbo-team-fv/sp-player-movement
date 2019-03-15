@@ -2,6 +2,7 @@
 
 State::State()
 {
+
     posNow.push_back(0.0),posNow.push_back(0.0);
     posBef.push_back(0.0),posBef.push_back(0.0);
     vel.push_back(0.0),vel.push_back(0.0);
@@ -29,39 +30,39 @@ void State::setPosBef(double x, double y)
 }
 void State::setVel(double ax, double ay, bool acelerado)
 {
-
+int freno=15;
     if(acelerado)//MOTOR CON ACELERACION
     {
 
         vel[0]+=ax;
         vel[1]+=ay;
 
-        if (vel[0]<=7.0&&vel[0]>=-7.0)
+        if (vel[0]<=freno&&vel[0]>=-freno)
         {
             vel[0] = 0.0;
         }
         else
         {
             //decrease the speed
-            if(vel[0]>7.0)
-                vel[0] -= 7.0;
+            if(vel[0]>freno)
+                vel[0] -= freno;
 
             if(vel[0]<-7.0)
-                vel[0] += 7.0;
+                vel[0] += freno;
         }
 
-        if (vel[1]<=7.0&&vel[1]>=-7.0)
+        if (vel[1]<=freno&&vel[1]>=-freno)
         {
             vel[1] = 0.0;
         }
         else
         {
             //decrease the speed
-            if(vel[1]>7.0)
-                vel[1] -= 7.0;
+            if(vel[1]>freno)
+                vel[1] -= freno;
 
-            if(vel[1]<-7.0)
-                vel[1] += 7.0;
+            if(vel[1]<-freno)
+                vel[1] += freno;
         }
     }
     else//MOTOR SIMPLE

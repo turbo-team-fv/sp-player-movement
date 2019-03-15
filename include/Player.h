@@ -15,8 +15,8 @@ class Player
     sf::Texture  tex;
     sf::Sprite spri;
 
-    int dir;
-    vector<sf::Rect<int> > frames;
+    int dir,frame;
+    vector< vector< sf::Rect<int> > > frames;
     Render			rState;
 	State       	pState;
 
@@ -25,8 +25,9 @@ class Player
     public:
         Player();
         virtual ~Player();
-
-        void setDir(int d);
+        int getFrame();
+        void setFrame(int f);
+        void setDir(int d,int f);
         void updatePlayer(double velx, double vely, sf::Time et);
         void drawPlayer(sf::RenderWindow& w, double i);
 

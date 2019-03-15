@@ -18,6 +18,8 @@ Juego::Juego(int resol_x, int resol_y, string gamename)
     eLeft=false;
     eRight=false;
 
+    switchFrame=0.2;
+    frame=0;
 }
 void Juego::loop()
 {
@@ -98,30 +100,38 @@ void Juego::updateGameState(sf::Time t)
 
     double x=0,y=0,potencia=50;
 
+    if(t.asSeconds()>timePerFrame.asSeconds())
+    {
+        frame+=1;
+        if(frame>1)
+        {
+            frame=-1;
+        }
+    }
+
     if(eRight)
     {
         x=potencia;
         y=0.0;
-        pl.setDir(4);//Decimos a donde esta mirando el sprite
-
+        pl.setDir(2,frame);
     }
-    if(eLeft)
+    else if(eLeft)
     {
         x=-potencia;
         y=0.0;
-        pl.setDir(6);//Decimos a donde esta mirando el sprite
+        pl.setDir(3,frame);//Decimos a donde esta mirando el sprite
     }
-    if(eUp)
+    else if(eUp)
     {
         x=0.0;
         y=-potencia;
-        pl.setDir(3);//Decimos a donde esta mirando el sprite
+        pl.setDir(1,frame);//Decimos a donde esta mirando el sprite
     }
-    if(eDown)
+    else if(eDown)
     {
         x=0.0;
         y=potencia;;
-        pl.setDir(0);//Decimos a donde esta mirando el sprite
+        pl.setDir(0,frame);//Decimos a donde esta mirando el sprite
 
     }
 

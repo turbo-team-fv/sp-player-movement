@@ -42,11 +42,13 @@
 			<Add option="-Wall" />
 		</Compiler>
 		<Unit filename="cb.bmp" />
+		<Unit filename="include/Animation.h" />
 		<Unit filename="include/Juego.h" />
 		<Unit filename="include/Player.h" />
 		<Unit filename="include/Render.h" />
 		<Unit filename="include/State.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="src/Animation.cpp" />
 		<Unit filename="src/Juego.cpp" />
 		<Unit filename="src/Player.cpp" />
 		<Unit filename="src/Render.cpp" />

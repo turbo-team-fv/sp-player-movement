@@ -34,6 +34,8 @@ class Juego
     sf::Clock clock;
     sf::Clock updateClock;
     sf::Time elapsedTime;
+    double switchFrame;
+    int frame;
     //Material interpolacion
     Player pl;
 

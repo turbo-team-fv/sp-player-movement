@@ -20,6 +20,10 @@ void Render::SetTexture(sf::Texture &tex)
     sprite = sf::Sprite(tex);
 }
 
+void Render::SetAnimation(int f){
+aframe=f;
+}
+
 void Render::SetSprite(double u,double v,sf::IntRect s,double x, double y,double scale)
 {
 
@@ -33,6 +37,7 @@ sprite.setTextureRect(s);
 }
 void Render::Draw(sf::RenderWindow &window, const vector<double> &posBef,const vector<double> &posNow, double interpolation)
 {
+
 
     renderPos[0]=(posNow[0]-posBef[0])*interpolation+posBef[0];
     renderPos[1]=(posNow[1]-posBef[1])*interpolation+posBef[1];
