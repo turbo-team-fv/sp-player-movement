@@ -31,6 +31,7 @@ void Render::SetSprite(double u,double v,sf::IntRect s,double x, double y,double
     sprite.setTextureRect(s);
     sprite.scale(scale,scale);
 
+
 }
 void Render::SetRect(sf::IntRect s){
 sprite.setTextureRect(s);
